@@ -1,6 +1,5 @@
 LISTA DE PERSONAJES
 
-
 @for(character of (characters$ | async); track character.name) {
   <app-character [character]="character"></app-character>
 } @empty {

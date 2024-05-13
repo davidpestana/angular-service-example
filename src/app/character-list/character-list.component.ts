@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Character, CharacterService } from '../character.service';
-import { Observable, Subscription, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-character-list',
@@ -15,7 +15,7 @@ export class CharacterListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.characters$ = this.characterService.getCharaters();
+    this.characters$ = this.characterService.characters;
   }
 
 
