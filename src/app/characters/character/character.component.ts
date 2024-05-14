@@ -13,5 +13,5 @@ export interface Location {
   styleUrl: './character.component.sass'
 })
 export class CharacterComponent {
-  @Input() character?: Character;
+  @Input() character?: Character | undefined | null;
 }

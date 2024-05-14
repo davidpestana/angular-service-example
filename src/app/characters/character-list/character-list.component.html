@@ -1,7 +1,7 @@
 LISTA DE PERSONAJES
 
 @for(character of (characters$ | async); track character.name) {
-  <app-character [character]="character"></app-character>
+  <app-character [character]="character" [routerLink]="['/personajes',character.id]"></app-character>
 } @empty {
   cargando
 }

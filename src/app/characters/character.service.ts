@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map, BehaviorSubject, of, tap } from 'rxjs';
+import { Observable, map, BehaviorSubject, of, tap, switchMap } from 'rxjs';
 
 export interface Character {
+  id: string;
   name: string;
   gender: string;
 }
@@ -15,7 +16,9 @@ export class CharacterService {
   private _characters = new BehaviorSubject<Character[]>([]);
   private _page = new BehaviorSubject<number>(1);
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+  ) {
     this.load();
   }
 
@@ -29,12 +32,23 @@ export class CharacterService {
     );
   }
 
+  findOne(charcterId:string): Observable<Character> {
+     return this.loadOne(charcterId);
+  }
+
   get currentPage(): Observable<number> {
     return this.nextPage.pipe(map((page) => page-1));
   }
 
   get nextPage(): Observable<number> {
     return this._page.asObservable()
+  }
+
+  loadOne(charcterId:string){
+    return new Observable<Character>((subscriber) => {
+      this.http.get('https://rickandmortyapi.com/api/character/' + charcterId)
+        .subscribe((character:any) => subscriber.next(character))
+    });
   }
 
   load(): void {

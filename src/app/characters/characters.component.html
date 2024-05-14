@@ -1,0 +1,8 @@
+<h1>PERSONAJES</h1>
+<button [routerLink]="['feed']">Feed</button>
+<button [routerLink]="['contador']">Contador</button>
+<button (click)="loadMore()">mas personajes</button>
+
+<div>
+  <router-outlet></router-outlet>
+</div>

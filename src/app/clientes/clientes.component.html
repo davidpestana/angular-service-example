@@ -1,0 +1,10 @@
+<p>clientes works!</p>
+
+<ul>
+@for (cliente of clientes; track cliente) {
+  <li><a [routerLink]="['/clientes', cliente]">{{cliente}}</a></li>
+}
+</ul>
+
+<router-outlet></router-outlet>
+
